@@ -101,9 +101,10 @@ func Header(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("%v", errB)))
 		return
 	}
-	w.WriteHeader(http.StatusOK)
+
 	sum := strconv.Itoa(a + b)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Add("a+b", sum)
+	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(fmt.Sprintf("a+b:%s", sum)))
 }
