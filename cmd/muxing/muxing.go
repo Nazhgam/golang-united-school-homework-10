@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -102,5 +103,13 @@ func Header(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Header().Set("a+b", strconv.Itoa(a+b))
+	sum := strconv.Itoa(a + b)
+
+	w.Header().Add("a+b", sum)
+
+	resp := make(map[string]string)
+	resp["a+b"] = sum
+	jsonResp, _ := json.Marshal(resp)
+	w.Write(jsonResp)
+
 }
