@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	hello   = "hello, %s"
+	hello   = "Hello, %s!"
 	message = "I got message:\n%s"
 )
 
@@ -102,5 +102,5 @@ func Header(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Header().Add("a+b", strconv.Itoa(a+b))
+	w.Header().Set("a+b", strconv.Itoa(a+b))
 }
